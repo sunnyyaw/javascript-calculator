@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+body,html {
+  height: 100%;
+}
+body {
+  background-color: thistle;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#root {
+  width: 320px;
+}
+#calculator {
+  min-height: 380px;
+  background-color: black;
+  border: 2px solid gray;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+#author {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  text-align: center;
+}
+#author p {
+  margin-bottom: 0;
+}
+#author a {
+  text-decoration: none;
+  color: unset;
+}
