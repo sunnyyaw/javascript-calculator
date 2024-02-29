@@ -1,0 +1,23 @@
+#display-box {
+  min-height: 70px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+#formula {
+  flex-grow: 1;
+  color: orange;
+  padding: 5px;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-align: end;
+  font-size: 1rem;
+}
+#display {
+  color: white;
+  padding: 5px;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-align: end;
+  font-size: 1.2rem;
+}
