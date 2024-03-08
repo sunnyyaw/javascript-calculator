@@ -7,7 +7,8 @@
     "dev": "webpack serve",
     "prebuild": "rimraf ./dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config ./webpack.config.js"
+    "build": "webpack --config ./webpack.config.js",
+    "analyz": "set NODE_ENV=production && set npm_config_report=true && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,7 @@
     "html-webpack-plugin": "^5.6.0",
     "style-loader": "^3.3.4",
     "webpack": "^5.90.3",
+    "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.2"
   }

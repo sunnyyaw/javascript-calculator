@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { changeScreenText} from "./store/screenSlice";
+import { changeScreenText,restoreText} from "./store/screenSlice";
 
 export default function Button({className, id, text, gridSpan = 1}) {
   const dispatch = useDispatch();
@@ -17,14 +17,22 @@ export default function Button({className, id, text, gridSpan = 1}) {
     borderRadius: '1px',
     backgroundColor: `${className}`,
   };
-  const handleClick = () => dispatch(changeScreenText(text));
+  const handleClick = () => 
+  {
+    var timer = null;
+    return () => {
+      clearTimeout(timer);
+      dispatch(changeScreenText(text));
+      timer = setTimeout(() => dispatch(restoreText()),1000);
+    }
+  };
   const handleHover = () => setHovered(true);
   const handleOut = () => setHovered(false);
   return (
     <div id={id} style={buttonStyle} 
     onMouseOver={handleHover} 
     onMouseOut={handleOut}
-    onClick={handleClick}>
+    onClick={handleClick()}>
       {text}
     </div>
   );

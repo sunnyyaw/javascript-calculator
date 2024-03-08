@@ -50,6 +50,7 @@ export const screenSlice = createSlice({
   initialState: {
     screenText: '0',
     formulaText: '',
+    tempScreenText: '0',
   },
   reducers: {
     changeScreenText: (state,action) => {
@@ -58,9 +59,11 @@ export const screenSlice = createSlice({
       const screenText = state.screenText.slice();
       const formulaText = state.formulaText.slice();
       if ( formulaText.includes('=') && !/[x\+\-\/]$/.test(payload) 
-      || screenText.includes('.') && payload === '.') {
+      || screenText.includes('.') && payload === '.'
+      || screenText === limitText && /[\d]$/.test(payload)) {
 
-      } else if ((screenText.length > 15 || screenText === limitText ) && /[\d]$/.test(payload)) {
+      } else if (screenText.length > 15  && /[\d]$/.test(payload)) {
+        state.tempScreenText = screenText;
         state.screenText = limitText;
       } else if (/[x\+\-\/]/.test(screenText) && payload != '.'||
         /[x\+\-\/]/.test(payload) ||
@@ -107,9 +110,15 @@ export const screenSlice = createSlice({
       state.screenText = '0';
       state.formulaText = '';
     },
+    restoreText: (state) => {
+      const limitText = 'DIGIT LIMIT MET';
+      if (state.screenText ===  limitText) {
+        state.screenText = state.tempScreenText;
+      }
+    },
   },
 });
 
-export const {changeScreenText,calculateFormula,clearScreenText} = screenSlice.actions;
+export const {changeScreenText,calculateFormula,clearScreenText,restoreText} = screenSlice.actions;
 
 export default screenSlice.reducer;
