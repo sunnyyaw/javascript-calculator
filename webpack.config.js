@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/index.jsx',
   output: {
     filename: 'bundle.[chunkhash].js',
-    path: path.resolve(__dirname,'dist'),
+    path: __dirname,
   },
   resolve: {
     extensions: ['.jsx','...'],
